@@ -12,15 +12,16 @@ import com.airport.gatemanagement.service.exception.GateNotFoundException;
 import com.airport.gatemanagement.service.exception.NoAvailableGateException;
 import com.airport.gatemanagement.util.TimeUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import javax.transaction.Transactional;
 
 
 
 
 @Service
-@Transactional
+@Transactional(isolation = Isolation.SERIALIZABLE)
 public class GateManagementServiceImpl implements GateManagementService {
 
     private final GateManagementRepository repository;
